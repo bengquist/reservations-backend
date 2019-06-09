@@ -2,6 +2,7 @@ const express = require("express");
 const { ApolloServer } = require("apollo-server-express");
 const typeDefs = require("./schema");
 const resolvers = require("./resolvers");
+const cors = require("cors");
 require("./config");
 
 const { Reservation } = require("./models");
@@ -15,6 +16,8 @@ const server = new ApolloServer({
 });
 
 const app = express();
+app.use(cors());
+
 server.applyMiddleware({ app });
 
 app.listen({ port: process.env.PORT || 4000 }, () =>

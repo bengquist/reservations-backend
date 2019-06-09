@@ -10,16 +10,16 @@ const typeDefs = gql`
   }
 
   type Query {
-    reservations: [Reservation]
+    reservations(query: String): [Reservation]
     reservation(id: String!): Reservation
   }
 
   type Mutation {
     addReservation(
-      name: String
-      hotelName: String
-      arrivalDate: String
-      departureDate: String
+      name: String!
+      hotelName: String!
+      arrivalDate: String!
+      departureDate: String!
     ): Reservation
   }
 `;

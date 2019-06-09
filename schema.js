@@ -11,7 +11,7 @@ const typeDefs = gql`
 
   type Query {
     reservations: [Reservation]
-    reservation(id: ID!): Reservation
+    reservation(id: String!): Reservation
   }
 
   type Mutation {

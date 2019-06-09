@@ -8,7 +8,7 @@ const reservationSchema = new Schema({
   departureDate: String
 });
 
-const Reservation = mongoose.model("hotel", reservationSchema);
+const Reservation = mongoose.model("reservation", reservationSchema);
 
 module.exports = {
   Reservation

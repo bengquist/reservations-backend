@@ -7,7 +7,15 @@ require("./config");
 
 const { Reservation } = require("./models");
 
+const port = process.env.PORT || 4000;
+
+const app = express();
+
+app.use(cors());
+
 const server = new ApolloServer({
+  introspection: true,
+  playground: true,
   typeDefs,
   resolvers,
   dataSources: () => ({
@@ -15,11 +23,8 @@ const server = new ApolloServer({
   })
 });
 
-const app = express();
-app.use(cors());
+server.applyMiddleware({ app, path: "/graphql" });
 
-server.applyMiddleware({ app });
-
-app.listen({ port: process.env.PORT || 4000 }, () =>
+app.listen({ port }, () =>
   console.log(`🚀 Server ready at http://localhost:4000${server.graphqlPath}`)
 );
